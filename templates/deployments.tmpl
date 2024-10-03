@@ -1,0 +1,20 @@
+<html>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Environment</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {{range .deployments}}
+                <tr>
+                    <td><a href="{{.LogUrl}}">{{.Description}}</a></td>
+                    <td>{{.Environment}}</td>
+                </tr>
+            {{end}}
+        </tbody>
+    </table>
+</html>
