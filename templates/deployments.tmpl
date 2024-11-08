@@ -1,18 +1,31 @@
 <html>
 
+    <div class="user">{{.user.Name}}</div>
+    <img src="{{.user.AvatarURL}}"/>
+
     <table>
         <thead>
             <tr>
                 <th>Description</th>
                 <th>Environment</th>
+                <th>Created At</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>
 
             {{range .deployments}}
                 <tr>
-                    <td><a href="{{.LogUrl}}">{{.Description}}</a></td>
-                    <td>{{.Environment}}</td>
+                    <td><a>{{.Deployment.Description}}</a></td>
+                    <td>{{.Deployment.Environment}}</td>
+                    <td>{{.Deployment.CreatedAt}}</td>
+                    <td>
+                        {{if len .Statuses}}
+                            <a href="{{(index .Statuses 0).LogURL}}" target="_blank">{{(index .Statuses 0).LogURL}}</a>
+                        {{else}}
+                            N/A
+                        {{end}}
+                    </td>
                 </tr>
             {{end}}
         </tbody>
